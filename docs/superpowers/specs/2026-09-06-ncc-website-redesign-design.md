@@ -147,6 +147,16 @@ cyan shine; hero buttons are magnetic. All pointer effects are fine-pointer
 only and off under reduced motion. Captions describe what is visible and
 never a suburb or a customer. Greater Sydney stays as a secondary line.
 
+## Revision 2026-09-20, round 3 (owner feedback)
+
+Cat6/Cat6A wording only, Cat7 removed everywhere; the Cat6 FAQ answer uses
+the owner's softer sentence. Eastern Suburbs only: the Greater Sydney line,
+the Sydney-wide highlight and the City of Sydney areaServed entry are gone.
+NCC is a private company: the diagram heading is "How NCC gets you connected",
+its button is "Book now", nav labels say "Connection types", and the footer
+notes it is not affiliated with NBN Co. The apartment-block photo is fibre
+distribution, not HFC.
+
 ## Search and conversion
 
 LocalBusiness JSON-LD with the service catalogue, FAQPage JSON-LD, Open Graph

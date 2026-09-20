@@ -10,11 +10,11 @@ Live mockup: https://hyderkhan.github.io/ncc-datacable/
 
 - Hero with an animated fibre-strand canvas over full-bleed photography, a light pulse sweeping through the slogan, parallax on the photo and magnetic buttons; the SEO H1 sits beneath the slogan at a readable size
 - Fourteen services grouped into NBN, optical fibre, data cabling and troubleshooting, written around the owner's search terms (NBN fibre installation from the street to the house, NTD installation and relocation, Ethernet cable installation, data points, NBN fault finding)
-- Interactive "How the NBN reaches you" diagram for FTTP, FTTN, FTTC and HFC
+- Interactive "How NCC gets you connected" diagram for FTTP, FTTN, FTTC and HFC
 - Three-step booking process, a pinboard of five real job photos as polaroids with the three reviews as handwritten notes (drop-in reveal, 3D tilt, cursor spotlight, draggable on desktop), six promises
 - FAQ with structured data (FAQPage) for search results
 - Booking form that emails the business and sends the customer a confirmation
-- Service-area section over Sydney Harbour naming the eleven Eastern Suburbs the business targets, with Greater Sydney as a secondary line, and a footer with click-to-call
+- Service-area section over Sydney Harbour naming the eleven Eastern Suburbs the business serves (no Greater Sydney claim, by the owner's request), and a footer with click-to-call and an independence line about NBN Co
 - A signal pulse that runs down the left rail as you scroll and lights each section
 
 SEO: title and H1 targeted at "NBN & Data Cabling" plus "Sydney's Eastern Suburbs", LocalBusiness JSON-LD with `areaServed` listing each suburb, FAQPage JSON-LD, Open Graph tags, `robots.txt`, `sitemap.xml`, semantic headings, descriptive alt text.
@@ -115,6 +115,13 @@ To use the real domain later:
 - **Reviews.** The three quotes are from the current site. Link them to Google Business Profile reviews when possible.
 - **Opening hours.** Currently "7 days a week" with no times; add them if the business wants to publish them.
 - **Suburb list.** The footer, FAQ and structured data name Randwick, Coogee, Maroubra, Bondi, North Bondi, Bellevue Hill, Double Bay, Rose Bay, Woollahra, Paddington and Vaucluse. Edit all three places together if the list changes.
+
+## Wording rules from the owner
+
+- Cat6 and Cat6A only. Never Cat7.
+- Eastern Suburbs only. No Greater Sydney or Sydney-wide claims.
+- NCC is a private company: headings and buttons say NCC or plain "Book now", never "NBN job", and the footer states it is not affiliated with NBN Co.
+- The apartment-block photo shows fibre distribution, not HFC.
 
 ## Editing
 
