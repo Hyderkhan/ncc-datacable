@@ -468,7 +468,6 @@ main { position: relative; }
 .regions { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 28px; margin-top: 36px; max-width: 980px; }
 .regions li { display: flex; align-items: center; gap: 10px; font-weight: 500; }
 .regions .led { background: var(--cyan-300); box-shadow: 0 0 8px rgba(126, 231, 236, 0.7); }
-.area-more { margin-top: 32px; font-size: 16px; }
 .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; padding-top: 56px; padding-bottom: 40px; align-items: start; }
 .footer-brand { display: flex; gap: 14px; align-items: center; }
 .footer-brand img { width: 56px; height: 56px; border-radius: 50%; }
