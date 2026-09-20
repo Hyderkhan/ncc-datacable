@@ -9,15 +9,15 @@ Live mockup: https://hyderkhan.github.io/ncc-datacable/
 ## What's on the page
 
 - Hero with an animated fibre-strand canvas over full-bleed photography
-- Thirteen services grouped into NBN, optical fibre, data cabling and troubleshooting
+- Fourteen services grouped into NBN, optical fibre, data cabling and troubleshooting, written around the owner's search terms (NBN fibre installation from the street to the house, NTD installation and relocation, Ethernet cable installation, data points, NBN fault finding)
 - Interactive "How the NBN reaches you" diagram for FTTP, FTTN, FTTC and HFC
-- Three-step booking process, photo gallery of the workmanship standard, six promises, three reviews
+- Three-step booking process, a strip of five real job photos with the three reviews, six promises
 - FAQ with structured data (FAQPage) for search results
 - Booking form that emails the business and sends the customer a confirmation
-- Service-area section over Sydney Harbour, footer with click-to-call
+- Service-area section over Sydney Harbour naming the eleven Eastern Suburbs the business targets, with Greater Sydney as a secondary line, and a footer with click-to-call
 - A signal pulse that runs down the left rail as you scroll and lights each section
 
-SEO: LocalBusiness and FAQPage JSON-LD, Open Graph tags, `robots.txt`, `sitemap.xml`, semantic headings, descriptive alt text.
+SEO: title and H1 targeted at "NBN & Data Cabling" plus "Sydney's Eastern Suburbs", LocalBusiness JSON-LD with `areaServed` listing each suburb, FAQPage JSON-LD, Open Graph tags, `robots.txt`, `sitemap.xml`, semantic headings, descriptive alt text.
 
 ## Booking emails: five-minute setup
 
@@ -110,15 +110,15 @@ To use the real domain later:
 
 ## Before launch: content to confirm
 
-- **Cabler registration number.** The hero and footer say "Registered cabler". Add the registration number and registrar (for example ACRS) once supplied.
-- **Photos.** The hero, service blocks and gallery use Unsplash photography (free to use under the [Unsplash licence](https://unsplash.com/license)). Swap in real job photos as they become available; keep the same file names in `assets/` and nothing else changes.
+- **Cabler registration number.** The site says "ACMA registered cabler" in the hero, the promises and the footer. Put the number in `config.js` under `business.registration` and every mention becomes "ACMA registered cabler No. XXXXX" automatically.
+- **Photos.** The five photos in the "Recent jobs" strip are the business's own (cropped to remove the GPS-camera watermark). The hero and the four service blocks still use Unsplash photography (free under the [Unsplash licence](https://unsplash.com/license)); replace those as real photos come in by keeping the same file names in `assets/`.
 - **Reviews.** The three quotes are from the current site. Link them to Google Business Profile reviews when possible.
 - **Opening hours.** Currently "7 days a week" with no times; add them if the business wants to publish them.
-- **Suburb list.** Edit the regions in the footer to match where the business actually travels.
+- **Suburb list.** The footer, FAQ and structured data name Randwick, Coogee, Maroubra, Bondi, North Bondi, Bellevue Hill, Double Bay, Rose Bay, Woollahra, Paddington and Vaucluse. Edit all three places together if the list changes.
 
 ## Editing
 
-- Business details: `config.js` (used by the booking form) and the matching text in `index.html`.
+- Business details and the ACMA registration number: `config.js` (used by the booking form and the registration line) and the matching text in `index.html`.
 - Colours and type: the token block at the top of `styles.css`.
 - NBN diagram copy: the `NBN` object near the top of `main.js`.
 
