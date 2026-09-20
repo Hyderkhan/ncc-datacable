@@ -176,10 +176,12 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => { build(); if (reduceMotion) draw(performance.now()); }, 120);
     });
+    const photo = $(".hero-photo");
     hero.addEventListener("pointermove", (e) => {
       const rect = hero.getBoundingClientRect();
       mouse.tx = (e.clientX - rect.left) / rect.width;
       mouse.ty = (e.clientY - rect.top) / rect.height;
+      if (photo && !reduceMotion) photo.style.transform = "translate(" + ((mouse.tx - 0.5) * -14).toFixed(1) + "px, " + ((mouse.ty - 0.5) * -10).toFixed(1) + "px) scale(1.04)";
     });
     if ("IntersectionObserver" in window && !reduceMotion) {
       new IntersectionObserver((entries) => {
@@ -506,7 +508,100 @@ Licensed data cabler and NBN technician, Sydney
     });
   }
 
-  /* ---------------- 6. Mobile call bar ---------------- */
+  /* ---------------- 6. Pointer effects: tilt, shine, magnetic buttons ---------------- */
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  function initTilt() {
+    if (reduceMotion || !finePointer) return;
+    $$("[data-tilt]").forEach((el) => {
+      const max = parseFloat(el.dataset.tilt) || 6;
+      el.addEventListener("pointermove", (e) => {
+        if (e.buttons) return; // not while dragging
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        el.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+        el.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+        const ry = (px - 0.5) * 2 * max, rx = (0.5 - py) * 2 * max;
+        el.style.transform = "perspective(900px) rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg) translateY(-6px) scale(1.02)";
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+  }
+
+  function initMagnet() {
+    if (reduceMotion || !finePointer) return;
+    $$("[data-magnet]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = "translate(" + (dx * 12).toFixed(1) + "px, " + (dy * 10).toFixed(1) + "px)";
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+  }
+
+  /* ---------------- 7. Pinboard: reveal, spotlight, drag ---------------- */
+  function initBoard() {
+    const board = $("#board");
+    if (!board) return;
+    const items = $$(".pin-item", board);
+
+    // reveal once
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((en) => en.isIntersecting)) { board.classList.add("is-in"); io.disconnect(); }
+      }, { threshold: 0.18 });
+      io.observe(board);
+    } else {
+      board.classList.add("is-in");
+    }
+
+    // spotlight follows the cursor
+    if (finePointer) {
+      board.addEventListener("pointermove", (e) => {
+        const r = board.getBoundingClientRect();
+        board.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
+        board.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+      });
+    }
+
+    // drag cards around (mouse / trackpad only; touch keeps scrolling)
+    if (!finePointer) return;
+    let zTop = 20;
+    items.forEach((li) => {
+      let startX = 0, startY = 0, baseX = 0, baseY = 0, dragging = false;
+      li.addEventListener("pointerdown", (e) => {
+        if (e.button !== 0) return;
+        dragging = true;
+        startX = e.clientX; startY = e.clientY;
+        baseX = parseFloat(li.dataset.dx || "0"); baseY = parseFloat(li.dataset.dy || "0");
+        li.style.zIndex = String(++zTop);
+        li.classList.add("is-dragging");
+        li.setPointerCapture(e.pointerId);
+        const card = li.querySelector(".card");
+        if (card) card.style.transform = "translateY(-10px) scale(1.04)";
+      });
+      li.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+        const dx = baseX + (e.clientX - startX), dy = baseY + (e.clientY - startY);
+        li.style.transform = "translate(" + dx.toFixed(1) + "px, " + dy.toFixed(1) + "px)";
+        li.dataset.dx = String(dx); li.dataset.dy = String(dy);
+      });
+      const end = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        li.classList.remove("is-dragging");
+        try { li.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+        const card = li.querySelector(".card");
+        if (card) card.style.transform = "";
+      };
+      li.addEventListener("pointerup", end);
+      li.addEventListener("pointercancel", end);
+      li.addEventListener("dragstart", (e) => e.preventDefault());
+    });
+  }
+
+  /* ---------------- 8. Mobile call bar ---------------- */
   function initMobileBar() {
     const bar = $(".mobile-bar");
     const book = $("#book");
@@ -522,6 +617,9 @@ Licensed data cabler and NBN technician, Sydney
     initHero();
     initNbn();
     initBooking();
+    initTilt();
+    initMagnet();
+    initBoard();
     initMobileBar();
     initRail();
     const year = $("#year");

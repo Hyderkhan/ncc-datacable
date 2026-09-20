@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/hero-fibre.jpg" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -135,12 +135,12 @@
     <canvas class="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-veil" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <p class="hero-kicker"><span class="junction" aria-hidden="true"></span>From the street to every room.</p>
+      <p class="hero-display"><span class="junction" aria-hidden="true"></span>From the street to every room.</p>
       <h1>NBN &amp; Data Cabling Services in Sydney's Eastern Suburbs</h1>
       <p class="hero-lede">Licensed data cabler providing NBN, fibre optic, HFC, Cat6/Cat7 Ethernet and network cabling for homes and businesses.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="#book">Book a service</a>
-        <a class="btn btn-ghost btn-lg" href="tel:+61415669617">Call 0415 669 617</a>
+        <a class="btn btn-primary btn-lg" href="#book" data-magnet>Book a service</a>
+        <a class="btn btn-ghost btn-lg" href="tel:+61415669617" data-magnet>Call 0415 669 617</a>
       </div>
       <ul class="link-lights" aria-label="Highlights">
         <li><span class="led" aria-hidden="true"></span>Open 7 days a week</li>
@@ -161,7 +161,7 @@
       </header>
 
       <div class="svc-grid">
-        <article class="svc-block svc-nbn">
+        <article class="svc-block svc-nbn" data-tilt="3">
           <figure class="svc-photo"><img src="assets/svc-nbn.jpg" alt="Technician in a hi-vis jacket wiring a network cabinet on a wall" loading="lazy" width="1200" height="800"></figure>
           <div class="svc-body">
             <h3>NBN installation and technician services</h3>
@@ -175,7 +175,7 @@
           </div>
         </article>
 
-        <article class="svc-block svc-fibre">
+        <article class="svc-block svc-fibre" data-tilt="3">
           <figure class="svc-photo"><img src="assets/svc-fibre.jpg" alt="Fibre optic patch cords plugged into a distribution frame" loading="lazy" width="1200" height="800"></figure>
           <div class="svc-body">
             <h3>Optical fibre</h3>
@@ -188,7 +188,7 @@
           </div>
         </article>
 
-        <article class="svc-block svc-data">
+        <article class="svc-block svc-data" data-tilt="3">
           <figure class="svc-photo"><img src="assets/svc-data.jpg" alt="Bundle of blue Ethernet cables entering a network switch" loading="lazy" width="1200" height="800"></figure>
           <div class="svc-body">
             <h3>Cat6 and Cat7 data cabling</h3>
@@ -202,7 +202,7 @@
           </div>
         </article>
 
-        <article class="svc-block svc-fix">
+        <article class="svc-block svc-fix" data-tilt="3">
           <figure class="svc-photo"><img src="assets/svc-fix.jpg" alt="Network cable tester with a blue Cat6 lead plugged in" loading="lazy" width="1200" height="800"></figure>
           <div class="svc-body">
             <h3>Troubleshooting, testing and fault finding</h3>
@@ -321,34 +321,41 @@
     </div>
   </section>
 
-  <!-- Real jobs and reviews -->
+  <!-- Pinboard: real jobs and reviews -->
   <section class="section theme-light jobs" id="reviews">
     <div class="container">
       <header class="sec-head">
         <span class="junction" aria-hidden="true"></span>
         <h2>Recent jobs and what customers say</h2>
-        <p class="lede">Photos from recent callouts: fibre light-level tests, NTD installs, HFC connection boxes and apartment-block distribution. Every point is tested before we leave.</p>
+        <p class="lede">Photos from recent callouts pinned up beside the notes customers left: fibre light-level tests, NTD installs, HFC connection boxes and apartment-block distribution. <span class="hint-drag">Drag the cards around if you like.</span></p>
       </header>
-      <ul class="job-strip">
-        <li><figure class="job"><img src="assets/job-fibre-test.jpg" width="900" height="1125" alt="Optical power meter showing a fibre light-level reading at an NBN wall plate" loading="lazy"><figcaption>Fibre light-level test at the NTD</figcaption></figure></li>
-        <li><figure class="job"><img src="assets/job-ntd-cupboard.jpg" width="900" height="1125" alt="NBN network termination device mounted inside a comms cupboard with cabling" loading="lazy"><figcaption>NBN NTD installed in a comms cupboard</figcaption></figure></li>
-        <li><figure class="job"><img src="assets/job-hfc-box.jpg" width="900" height="1125" alt="NBN HFC connection box on a shelf with all status lights green" loading="lazy"><figcaption>HFC connection box up and running</figcaption></figure></li>
-        <li><figure class="job"><img src="assets/job-mdu-hfc.jpg" width="900" height="1125" alt="Rows of labelled HFC distribution units on a basement wall of an apartment block" loading="lazy"><figcaption>Apartment-block HFC distribution</figcaption></figure></li>
-        <li><figure class="job"><img src="assets/job-coax-tap.jpg" width="900" height="1125" alt="Coaxial tap with multiple terminated cables" loading="lazy"><figcaption>Coax tap terminated and labelled</figcaption></figure></li>
-      </ul>
-      <div class="reviews">
-        <blockquote>
-          <p>“Reliable, affordable, and easy to deal with. Responded quickly and got the job done without any hassle.”</p>
-          <footer><span class="stars" aria-label="Five stars">★★★★★</span>A.R, homeowner</footer>
-        </blockquote>
-        <blockquote>
-          <p>“Very fast and professional service. Fixed my internet issue the same day and explained everything clearly. Highly recommend!”</p>
-          <footer><span class="stars" aria-label="Five stars">★★★★★</span>J.M, homeowner</footer>
-        </blockquote>
-        <blockquote>
-          <p>“Excellent work installing our network and cabling. Everything was neat, efficient, and working perfectly. Will definitely use again.”</p>
-          <footer><span class="stars" aria-label="Five stars">★★★★★</span>S.K, business owner</footer>
-        </blockquote>
+      <div class="board" id="board">
+        <ul class="pins">
+          <li class="pin-item" style="--i:0;--r:-5deg;--x:1%;--y:40px">
+            <figure class="card polaroid" data-tilt="8"><span class="pin" aria-hidden="true"></span><img src="assets/job-fibre-test.jpg" width="900" height="1125" alt="Optical power meter showing a fibre light-level reading at an NBN wall plate" loading="lazy"><figcaption>Fibre light-level test at the NTD</figcaption></figure>
+          </li>
+          <li class="pin-item pin-note" style="--i:1;--r:3deg;--x:24%;--y:24px">
+            <blockquote class="card note" data-tilt="6"><span class="pin" aria-hidden="true"></span><p>“Reliable, affordable, and easy to deal with. Responded quickly and got the job done without any hassle.”</p><footer><span class="stars" aria-label="Five stars">★★★★★</span>A.R, homeowner</footer></blockquote>
+          </li>
+          <li class="pin-item" style="--i:2;--r:2deg;--x:47%;--y:26px">
+            <figure class="card polaroid" data-tilt="8"><span class="pin" aria-hidden="true"></span><img src="assets/job-ntd-cupboard.jpg" width="900" height="1125" alt="NBN network termination device mounted inside a comms cupboard with cabling" loading="lazy"><figcaption>NBN NTD installed in a comms cupboard</figcaption></figure>
+          </li>
+          <li class="pin-item" style="--i:3;--r:-3deg;--x:70%;--y:18px">
+            <figure class="card polaroid" data-tilt="8"><span class="pin" aria-hidden="true"></span><img src="assets/job-hfc-box.jpg" width="900" height="1125" alt="NBN HFC connection box on a shelf with all status lights green" loading="lazy"><figcaption>HFC connection box up and running</figcaption></figure>
+          </li>
+          <li class="pin-item" style="--i:4;--r:4deg;--x:5%;--y:416px">
+            <figure class="card polaroid" data-tilt="8"><span class="pin" aria-hidden="true"></span><img src="assets/job-mdu-hfc.jpg" width="900" height="1125" alt="Rows of labelled HFC distribution units on a basement wall of an apartment block" loading="lazy"><figcaption>Apartment-block HFC distribution</figcaption></figure>
+          </li>
+          <li class="pin-item pin-note" style="--i:5;--r:-4deg;--x:30%;--y:440px">
+            <blockquote class="card note" data-tilt="6"><span class="pin" aria-hidden="true"></span><p>“Very fast and professional service. Fixed my internet issue the same day and explained everything clearly. Highly recommend!”</p><footer><span class="stars" aria-label="Five stars">★★★★★</span>J.M, homeowner</footer></blockquote>
+          </li>
+          <li class="pin-item" style="--i:6;--r:-2deg;--x:53%;--y:428px">
+            <figure class="card polaroid" data-tilt="8"><span class="pin" aria-hidden="true"></span><img src="assets/job-coax-tap.jpg" width="900" height="1125" alt="Coaxial tap with multiple terminated cables" loading="lazy"><figcaption>Coax tap terminated and labelled</figcaption></figure>
+          </li>
+          <li class="pin-item pin-note" style="--i:7;--r:5deg;--x:72%;--y:430px">
+            <blockquote class="card note" data-tilt="6"><span class="pin" aria-hidden="true"></span><p>“Excellent work installing our network and cabling. Everything was neat, efficient, and working perfectly. Will definitely use again.”</p><footer><span class="stars" aria-label="Five stars">★★★★★</span>S.K, business owner</footer></blockquote>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
