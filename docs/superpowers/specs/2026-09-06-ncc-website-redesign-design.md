@@ -128,6 +128,19 @@ configured.
 Validation is inline. Errors say what to fix. The confirmation state repeats
 the phone number in case the requester wants to call instead.
 
+## Revision 2026-09-20: Eastern Suburbs focus and real job photos
+
+Owner feedback: target Sydney's Eastern Suburbs (Randwick, Double Bay, Rose Bay,
+Woollahra, Paddington, North Bondi, Bellevue Hill, Bondi, Vaucluse, Coogee,
+Maroubra) so search engines read it as the service area; title "NBN & Data
+Cabling Eastern Suburbs Sydney | Licensed Data Cabler"; H1 "NBN & Data Cabling
+Services in Sydney's Eastern Suburbs" with the slogan "From the street to every
+room." kept as the kicker; extra service phrases folded into the service rows,
+booking options and structured data; ACMA registration line with the number
+supplied via config. Five real job photos replaced the Unsplash gallery in a
+staggered 4:5 strip beside the reviews. Captions describe what is visible and
+never a suburb or a customer. Greater Sydney stays as a secondary line.
+
 ## Search and conversion
 
 LocalBusiness JSON-LD with the service catalogue, FAQPage JSON-LD, Open Graph

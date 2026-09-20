@@ -8,7 +8,10 @@ window.NCC_CONFIG = {
     phoneHref: "tel:+61415669617",
     email: "info@nextcc.com.au",
     hours: "7 days a week",
-    area: "Sydney"
+    area: "Sydney's Eastern Suburbs",
+    /* ACMA cabler registration number. Leave empty until supplied; when set it
+       is appended wherever the site says "ACMA registered cabler". */
+    registration: ""
   },
 
   /* Booking emails are sent from the browser with EmailJS (https://www.emailjs.com).

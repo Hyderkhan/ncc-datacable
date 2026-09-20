@@ -526,6 +526,7 @@ Licensed data cabler and NBN technician, Sydney
     initRail();
     const year = $("#year");
     if (year) year.textContent = String(new Date().getFullYear());
+    if (BIZ.registration) $$("[data-reg]").forEach((el) => { el.textContent = "ACMA registered cabler No. " + BIZ.registration; });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
