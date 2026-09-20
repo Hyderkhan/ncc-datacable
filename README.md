@@ -8,10 +8,10 @@ Live mockup: https://hyderkhan.github.io/ncc-datacable/
 
 ## What's on the page
 
-- Hero with an animated fibre-strand canvas over full-bleed photography
+- Hero with an animated fibre-strand canvas over full-bleed photography, a light pulse sweeping through the slogan, parallax on the photo and magnetic buttons; the SEO H1 sits beneath the slogan at a readable size
 - Fourteen services grouped into NBN, optical fibre, data cabling and troubleshooting, written around the owner's search terms (NBN fibre installation from the street to the house, NTD installation and relocation, Ethernet cable installation, data points, NBN fault finding)
 - Interactive "How the NBN reaches you" diagram for FTTP, FTTN, FTTC and HFC
-- Three-step booking process, a strip of five real job photos with the three reviews, six promises
+- Three-step booking process, a pinboard of five real job photos as polaroids with the three reviews as handwritten notes (drop-in reveal, 3D tilt, cursor spotlight, draggable on desktop), six promises
 - FAQ with structured data (FAQPage) for search results
 - Booking form that emails the business and sends the customer a confirmation
 - Service-area section over Sydney Harbour naming the eleven Eastern Suburbs the business targets, with Greater Sydney as a secondary line, and a footer with click-to-call

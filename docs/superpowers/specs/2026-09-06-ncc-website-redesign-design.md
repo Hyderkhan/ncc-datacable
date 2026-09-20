@@ -137,8 +137,14 @@ Cabling Eastern Suburbs Sydney | Licensed Data Cabler"; H1 "NBN & Data Cabling
 Services in Sydney's Eastern Suburbs" with the slogan "From the street to every
 room." kept as the kicker; extra service phrases folded into the service rows,
 booking options and structured data; ACMA registration line with the number
-supplied via config. Five real job photos replaced the Unsplash gallery in a
-staggered 4:5 strip beside the reviews. Captions describe what is visible and
+supplied via config. Five real job photos replaced the Unsplash gallery. Second pass the same
+day: the SEO H1 was too large as display type, so the slogan is the display line
+(with a light sweep) and the H1 sits under it at 22 to 32px in cyan. The photos
+became polaroids and the reviews handwritten notes (Caveat) pinned to a dark
+pegboard: staggered drop-in reveal, straighten and 3D tilt on hover, cursor
+spotlight, draggable with a mouse. Service blocks gained a matching tilt and
+cyan shine; hero buttons are magnetic. All pointer effects are fine-pointer
+only and off under reduced motion. Captions describe what is visible and
 never a suburb or a customer. Greater Sydney stays as a secondary line.
 
 ## Search and conversion
