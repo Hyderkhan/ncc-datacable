@@ -577,3 +577,16 @@ main { position: relative; }
 }
 .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .demo-note.demo-first { margin: 0 0 22px; }
+
+/* ---------- Google review card (shown once the profile links are set) ---------- */
+.review-cta {
+  margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px;
+  padding: 22px 26px; border-radius: var(--r-lg); background: var(--white); border: 1px solid var(--line-light);
+  box-shadow: 0 20px 40px -30px rgba(15, 26, 61, 0.45);
+}
+.review-cta-text { display: grid; gap: 4px; max-width: 52ch; }
+.review-cta-text strong { font-family: var(--font-display); font-size: 26px; font-weight: 600; line-height: 1.1; color: var(--ink); }
+.review-cta-text span:not(.stars) { color: var(--ink-muted); }
+.review-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.review-cta .btn-ghost { color: var(--ink); }
+@media (max-width: 560px) { .review-cta { padding: 20px; } .review-cta-actions, .review-cta-actions .btn { width: 100%; } }

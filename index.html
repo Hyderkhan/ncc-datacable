@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/hero-fibre.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -388,6 +388,19 @@
           </li>
         </ul>
       </div>
+
+      <!-- Google reviews: shown once the Google Business Profile links are set in config.js -->
+      <div class="review-cta" data-review-cta hidden>
+        <div class="review-cta-text">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <strong>Had a job done by us?</strong>
+          <span>A quick Google review helps other locals find a cabler they can trust.</span>
+        </div>
+        <div class="review-cta-actions">
+          <a class="btn btn-primary" data-review-link href="#reviews" target="_blank" rel="noopener" hidden>Leave us a Google review</a>
+          <a class="btn btn-ghost" data-reviews-link href="#reviews" target="_blank" rel="noopener" hidden>See all reviews on Google</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -571,6 +584,7 @@
       <a href="tel:+61415669617">0415 669 617</a>
       <a href="mailto:info@nextcc.com.au">info@nextcc.com.au</a>
       <span>Open 7 days a week</span>
+      <a data-review-link href="#reviews" target="_blank" rel="noopener" hidden>★ Review us on Google</a>
     </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="#services">Services</a>
@@ -589,7 +603,7 @@
   <a class="btn btn-primary" href="#book">Request a quote</a>
 </div>
 
-<script src="config.js?v=8"></script>
-<script src="main.js?v=8" defer></script>
+<script src="config.js?v=9"></script>
+<script src="main.js?v=9" defer></script>
 </body>
 </html>

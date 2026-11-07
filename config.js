@@ -11,7 +11,13 @@ window.NCC_CONFIG = {
     area: "Sydney's Eastern Suburbs",
     /* ACMA cabler registration number. Leave empty until supplied; when set it
        is appended wherever the site says "ACMA registered cabler". */
-    registration: ""
+    registration: "",
+    /* Google Business Profile. While these are empty the review card and the
+       footer link stay hidden.
+       googleReviewUrl:  the profile's "Ask for reviews" link (https://g.page/r/…/review)
+       googleProfileUrl: the public listing on Google Maps, for "See all reviews" */
+    googleReviewUrl: "",
+    googleProfileUrl: ""
   },
 
   /* On WordPress the ncc-site plugin sets window.NCC_CONFIG.endpoint and sends

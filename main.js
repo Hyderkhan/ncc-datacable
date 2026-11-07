@@ -646,6 +646,17 @@ Licensed data cabler and NBN technician, Sydney's Eastern Suburbs
     }, { threshold: 0.15 }).observe(book);
   }
 
+  /* ---------------- 9. Google reviews links ---------------- */
+  // Hidden until the Google Business Profile links are set in config.js.
+  function initGoogleReviews() {
+    const safe = (u) => (typeof u === "string" && /^https:\/\//.test(u) ? u : "");
+    const review = safe(BIZ.googleReviewUrl);
+    const profile = safe(BIZ.googleProfileUrl);
+    if (review) $$("[data-review-link]").forEach((a) => { a.href = review; a.hidden = false; });
+    if (profile) $$("[data-reviews-link]").forEach((a) => { a.href = profile; a.hidden = false; });
+    if (review || profile) $$("[data-review-cta]").forEach((el) => { el.hidden = false; });
+  }
+
   /* ---------------- boot ---------------- */
   function boot() {
     initNav();
@@ -656,6 +667,7 @@ Licensed data cabler and NBN technician, Sydney's Eastern Suburbs
     initMagnet();
     initBoard();
     initMobileBar();
+    initGoogleReviews();
     initRail();
     const year = $("#year");
     if (year) year.textContent = String(new Date().getFullYear());
