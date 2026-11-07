@@ -22,7 +22,29 @@ The footer carries click-to-call, email and an independence line about NBN Co. A
 
 SEO: title and H1 targeted at "NBN & Data Cabling" plus "Sydney's Eastern Suburbs", LocalBusiness JSON-LD with `areaServed` listing each suburb, FAQPage JSON-LD, Open Graph tags, `robots.txt`, `sitemap.xml`, semantic headings, descriptive alt text.
 
-## Quote request emails: five-minute setup
+## Deploying to WordPress (sends the quote emails)
+
+The `wordpress/` folder packages this site as a WordPress plugin, **NCC Site and Quote Form** (`ncc-site`). It shows the page as the homepage and sends every quote request to **info@nextcc.com.au** through WordPress itself: no EmailJS account, no keys, no monthly cap.
+
+**Plan requirement.** nccdatacable.com is currently a WordPress.com site on a plan without plugins (checked 7 Nov 2026: a "Simple" site, not plugin-enabled). Uploading a plugin, and running the page's JavaScript, needs a WordPress.com plan that allows plugins (Business or higher) or any self-hosted WordPress.
+
+1. Build the plugin: `bash wordpress/build.sh` creates `dist/ncc-site.zip`.
+2. In WordPress: Plugins, Add New, Upload Plugin, choose `ncc-site.zip`, Install, Activate.
+3. Settings, NCC Site: check that "Send quote requests to" says `info@nextcc.com.au`, click **Send test email**, and look for it in that inbox (and in spam).
+4. Open the homepage and send a test request from the form.
+
+To update the site later, rebuild the zip and upload it again; WordPress offers "Replace current with uploaded".
+
+**What happens on submit.** The form posts to `/wp-json/ncc/v1/quote`. The plugin checks the fields, emails the request to the address in Settings with Reply-To set to the customer (so replying goes straight to them), and emails the customer a confirmation with their reference number. A hidden honeypot field and a per-connection rate limit (8 requests per 10 minutes) keep bots out. Nothing in `config.js` needs filling in.
+
+**Getting the emails delivered.** WordPress sends from its own address, which Gmail can treat as suspicious. For reliable delivery:
+
+- Install **WP Mail SMTP** (or FluentSMTP) and connect it to the `info@nextcc.com.au` Google Workspace mailbox. The form then sends from that mailbox with no change to the plugin.
+- `nextcc.com.au` has no SPF or DMARC record (checked 7 Nov 2026). In the domain's DNS add a TXT record `v=spf1 include:_spf.google.com ~all`, and a DMARC record such as `_dmarc` TXT `v=DMARC1; p=none; rua=mailto:info@nextcc.com.au`. This helps all of the business's email, not only the website's.
+
+## Static hosting only: EmailJS setup
+
+Skip this on WordPress; the plugin sends the emails.
 
 GitHub Pages has no server, so the browser sends the emails through [EmailJS](https://www.emailjs.com) (free tier: 200 emails a month).
 Until it's configured, the form runs in **demo mode**: it shows the confirmation screen and previews both emails without sending anything.
@@ -100,9 +122,9 @@ Variables available in the templates: `booking_ref`, `submitted_at`, `from_name`
 
 The EmailJS public key is meant to be visible in the browser. Restrict it to your domain in the EmailJS dashboard (Account, Security) once the site is live.
 
-## Hosting on GitHub Pages
+## Hosting on GitHub Pages (preview)
 
-This repo is set up to serve from the `main` branch, root folder. Any push to `main` redeploys within a minute or two.
+The GitHub Pages copy is the preview mockup; the production site goes on WordPress (see above). This repo is set up to serve from the `main` branch, root folder. Any push to `main` redeploys within a minute or two.
 
 To use the real domain later:
 

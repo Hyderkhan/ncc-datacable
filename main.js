@@ -347,8 +347,30 @@ Licensed data cabler and NBN technician, Sydney
   const fill = (tpl, p) => tpl.replace(/{{\s*(\w+)\s*}}/g, (_, k) => (p[k] == null || p[k] === "" ? "" : String(p[k])));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  /* Where the form goes, in order of preference:
+     1. CONFIG.endpoint: the WordPress plugin's /wp-json/ncc/v1/quote (set by the plugin)
+     2. EmailJS, when all four keys are filled in config.js (static hosting)
+     3. Demo mode: confirmation screen and email previews, nothing sent */
   function emailConfigured() {
     return Boolean(EJ.publicKey && EJ.serviceId && EJ.ownerTemplateId && EJ.customerTemplateId);
+  }
+  async function sendViaEndpoint(params) {
+    let res;
+    try {
+      res = await fetch(CONFIG.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(params)
+      });
+    } catch (err) {
+      throw new Error("Couldn't reach the server. Check your connection and try again, or call " + (BIZ.phone || "us") + ".");
+    }
+    let data = {};
+    try { data = await res.json(); } catch (err) { /* non-JSON error page */ }
+    if (!res.ok || !data.ok) {
+      throw new Error(data.message || "The request didn't go through. Please try again, or call " + (BIZ.phone || "us") + ".");
+    }
+    return { ref: data.ref, customerSent: Boolean(data.customerSent) };
   }
   function loadEmailJs() {
     return new Promise((resolve, reject) => {
@@ -431,6 +453,7 @@ Licensed data cabler and NBN technician, Sydney
         preferred_date: fmtDate(f.preferred_date.value),
         preferred_time: f.preferred_time.value,
         message: f.message.value.trim() || "No extra details given.",
+        company_website: f.company_website ? f.company_website.value : "",
         to_email: BIZ.email || "",
         business_name: BIZ.name || "Next Century Communications",
         business_phone: BIZ.phone || "",
@@ -491,7 +514,11 @@ Licensed data cabler and NBN technician, Sydney
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending your request';
       try {
-        if (emailConfigured()) {
+        if (CONFIG.endpoint) {
+          const { ref, customerSent } = await sendViaEndpoint(params);
+          if (ref) params.booking_ref = ref;
+          renderSuccess(params, "live", customerSent);
+        } else if (emailConfigured()) {
           const { customerSent } = await sendBookingEmails(params);
           renderSuccess(params, "live", customerSent);
         } else {
@@ -500,7 +527,9 @@ Licensed data cabler and NBN technician, Sydney
         }
       } catch (err) {
         console.error(err);
-        status.textContent = "The request didn't go through. Please try again, or call " + (BIZ.phone || "us") + ".";
+        status.textContent = CONFIG.endpoint && err && err.message
+          ? err.message
+          : "The request didn't go through. Please try again, or call " + (BIZ.phone || "us") + ".";
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = submitLabel;

@@ -14,10 +14,12 @@ window.NCC_CONFIG = {
     registration: ""
   },
 
-  /* Booking emails are sent from the browser with EmailJS (https://www.emailjs.com).
-     Leave these empty and the form runs in demo mode: it shows the confirmation
-     screen and previews both emails without sending anything.
-     See README.md for the five-minute setup. */
+  /* On WordPress the ncc-site plugin sets window.NCC_CONFIG.endpoint and sends
+     the emails itself; nothing here needs filling in.
+     For static hosting (GitHub Pages) the form can send from the browser with
+     EmailJS (https://www.emailjs.com) instead. Leave these empty and, without
+     the plugin, the form runs in demo mode: it shows the confirmation screen and
+     previews both emails without sending anything. See README.md. */
   emailjs: {
     publicKey: "",
     serviceId: "",

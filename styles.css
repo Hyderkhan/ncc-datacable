@@ -575,3 +575,4 @@ main { position: relative; }
   .book-panel { padding: 20px 16px; }
   .mobile-bar .btn { min-width: 0; padding-inline: 12px; font-size: 16px; }
 }
+.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
