@@ -157,6 +157,21 @@ its button is "Book now", nav labels say "Connection types", and the footer
 notes it is not affiliated with NBN Co. The apartment-block photo is fibre
 distribution, not HFC.
 
+## Revision 2026-11-07, round 4 (focused homepage)
+
+The page was too long and repeated itself, the Eastern Suburbs and the suburb
+list most of all. It now runs main message, services, why choose NCC, areas,
+reviews, FAQ, then call or request a quote. The suburb list appears once, in
+the Areas section (moved up from the footer); the FAQ about areas is replaced
+by "My NBN isn't working. Should I call you or my internet provider?" and the
+weekends question by "How much does it cost?". The connection-types diagram
+folds into the foot of Services as a "How NCC gets you connected" card that
+opens on demand, and the three booking steps move into the quote section.
+Duplicate service lines are merged (HFC and coax; Cat6 and internal Cat6).
+"Book a service" becomes "Request a quote" everywhere, and the quote section
+leads with a large "Call a licensed data cabler, 0415 669 617" card. The
+business name is Next Century Communications, with the "s".
+
 ## Search and conversion
 
 LocalBusiness JSON-LD with the service catalogue, FAQPage JSON-LD, Open Graph

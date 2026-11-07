@@ -1,8 +1,8 @@
-/* Site configuration for Next Century Communication.
+/* Site configuration for Next Century Communications.
    Edit the values here; nothing else needs to change. */
 window.NCC_CONFIG = {
   business: {
-    name: "Next Century Communication",
+    name: "Next Century Communications",
     shortName: "NCC",
     phone: "0415 669 617",
     phoneHref: "tel:+61415669617",
@@ -14,10 +14,12 @@ window.NCC_CONFIG = {
     registration: ""
   },
 
-  /* Booking emails are sent from the browser with EmailJS (https://www.emailjs.com).
-     Leave these empty and the form runs in demo mode: it shows the confirmation
-     screen and previews both emails without sending anything.
-     See README.md for the five-minute setup. */
+  /* On WordPress the ncc-site plugin sets window.NCC_CONFIG.endpoint and sends
+     the emails itself; nothing here needs filling in.
+     For static hosting (GitHub Pages) the form can send from the browser with
+     EmailJS (https://www.emailjs.com) instead. Leave these empty and, without
+     the plugin, the form runs in demo mode: it shows the confirmation screen and
+     previews both emails without sending anything. See README.md. */
   emailjs: {
     publicKey: "",
     serviceId: "",
