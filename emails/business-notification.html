@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="robots" content="noindex">
+<title>New quote request {{booking_ref}}</title>
+<style>
+  @media (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 20px !important; padding-right: 20px !important; }
+    .btn { display: block !important; width: 100% !important; margin: 0 0 10px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#E9EEF5;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">{{from_name}}, {{suburb}}: {{service}}. Call {{phone}}.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#E9EEF5;">
+<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
+
+  <tr><td class="px" style="background:#0B1230;border-radius:14px 14px 0 0;padding:24px 30px;font-family:Barlow,'Helvetica Neue',Arial,sans-serif;">
+    <p style="margin:0;font-family:Arial,sans-serif;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#FF8F4F;">New quote request</p>
+    <h1 style="margin:6px 0 0;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:30px;line-height:1.1;font-weight:600;color:#FFFFFF;">{{service}}</h1>
+    <p style="margin:8px 0 0;font-size:15px;color:#B0BDD5;">{{suburb}} &middot; {{property_type}} &middot; Ref <strong style="color:#7EE7EC;letter-spacing:1px;">{{booking_ref}}</strong></p>
+  </td></tr>
+  <tr><td style="background:#FF7A2F;height:4px;line-height:4px;font-size:0;">&nbsp;</td></tr>
+
+  <tr><td class="px" style="background:#FFFFFF;padding:26px 30px 6px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td class="btn" style="background:#FF7A2F;border-radius:8px;"><a href="tel:{{phone}}" style="display:inline-block;padding:13px 22px;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;color:#0B1230;text-decoration:none;">Call {{from_name}}</a></td>
+      <td class="btn" width="12" style="font-size:0;">&nbsp;</td>
+      <td class="btn" style="border:2px solid #0B1230;border-radius:8px;"><a href="mailto:{{reply_to}}?subject=Your%20quote%20request%20{{booking_ref}}" style="display:inline-block;padding:11px 20px;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;color:#0B1230;text-decoration:none;">Reply by email</a></td>
+    </tr></table>
+  </td></tr>
+
+  <tr><td class="px" style="background:#FFFFFF;padding:22px 30px 30px;border-radius:0 0 14px 14px;font-family:Barlow,'Helvetica Neue',Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #E1E7F0;">
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Name</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;color:#0F1A3D;">{{from_name}}</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Phone</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;"><a href="tel:{{phone}}" style="color:#0E8A9C;text-decoration:none;">{{phone}}</a></td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Email</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;"><a href="mailto:{{reply_to}}" style="color:#0E8A9C;text-decoration:none;">{{reply_to}}</a></td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Service</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;color:#0F1A3D;">{{service}}</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Location</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;color:#0F1A3D;">{{suburb}} ({{property_type}})</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">NBN connection</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;color:#0F1A3D;">{{nbn_type}}</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Preferred time</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;font-weight:600;color:#0F1A3D;">{{preferred_date}}, {{preferred_time}}</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;color:#6A7795;vertical-align:top;">Details</td><td style="padding:11px 0;border-bottom:1px solid #E1E7F0;font-size:15px;line-height:1.5;color:#33405F;white-space:pre-line;">{{message}}</td></tr>
+      <tr><td width="34%" style="padding:11px 12px 11px 0;font-size:15px;color:#6A7795;vertical-align:top;">Received</td><td style="padding:11px 0;font-size:15px;color:#33405F;">{{submitted_at}}</td></tr>
+    </table>
+    <p style="margin:20px 0 0;font-size:14px;line-height:1.5;color:#6A7795;">Replying to this email goes straight to the customer. The customer has been sent a confirmation with reference {{booking_ref}}.</p>
+  </td></tr>
+
+  <tr><td style="padding:18px 28px 6px;text-align:center;font-family:Arial,sans-serif;font-size:12px;color:#8A96B0;">Sent by the quote form on the Next Century Communications website.</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

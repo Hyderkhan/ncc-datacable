@@ -13,6 +13,7 @@ cp wordpress/ncc-site/ncc-site.php wordpress/ncc-site/readme.txt "$out/"
 cp index.html "$out/site/template.html"
 cp styles.css main.js config.js "$out/site/"
 cp -R assets "$out/site/assets"
+cp -R emails "$out/emails"
 find "$out" -name '.DS_Store' -delete
 
 (cd dist && zip -qr ncc-site.zip ncc-site)

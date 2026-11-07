@@ -214,20 +214,24 @@ final class NCC_Site {
 		};
 		add_filter( 'wp_mail_from_name', $from_name );
 
-		$owner_sent = wp_mail(
+		$owner_sent = self::send(
 			$s['recipient'],
 			sprintf( 'New quote request %s: %s in %s', $ref, $v['service'], $v['suburb'] ),
+			'business-notification.html',
 			self::owner_body( $v ),
-			array( 'Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . self::address( $v['from_name'], $v['reply_to'] ) )
+			$v,
+			'Reply-To: ' . self::address( $v['from_name'], $v['reply_to'] )
 		);
 
 		$customer_sent = false;
 		if ( $owner_sent && ! empty( $s['confirm_customer'] ) ) {
-			$customer_sent = wp_mail(
+			$customer_sent = self::send(
 				$v['reply_to'],
 				sprintf( "We've received your quote request (%s)", $ref ),
+				'customer-confirmation.html',
 				self::customer_body( $v ),
-				array( 'Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . self::address( self::BUSINESS_NAME, $s['recipient'] ) )
+				$v,
+				'Reply-To: ' . self::address( self::BUSINESS_NAME, $s['recipient'] )
 			);
 		}
 
@@ -245,6 +249,62 @@ final class NCC_Site {
 			),
 			200
 		);
+	}
+
+	/**
+	 * Send one email: the designed HTML from emails/<template> with a plain-text
+	 * alternative for clients (and spam filters) that prefer text. Falls back to
+	 * plain text alone if the template file is missing.
+	 */
+	private static function send( $to, $subject, $template, $text, $v, $reply_to_header ) {
+		$html = self::render_email( $template, $v );
+		if ( '' === $html ) {
+			return wp_mail( $to, $subject, $text, array( 'Content-Type: text/plain; charset=UTF-8', $reply_to_header ) );
+		}
+		$alt = function ( $phpmailer ) use ( $text ) {
+			$phpmailer->AltBody = $text;
+		};
+		add_action( 'phpmailer_init', $alt );
+		$ok = wp_mail( $to, $subject, $html, array( 'Content-Type: text/html; charset=UTF-8', $reply_to_header ) );
+		remove_action( 'phpmailer_init', $alt );
+		return $ok;
+	}
+
+	/** Fill {{placeholders}} in an email template; every value is HTML-escaped. */
+	private static function render_email( $template, $v ) {
+		$file = plugin_dir_path( __FILE__ ) . 'emails/' . $template;
+		if ( ! is_readable( $file ) ) {
+			return '';
+		}
+		$values = array(
+			'booking_ref'    => $v['ref'],
+			'submitted_at'   => $v['received'],
+			'from_name'      => $v['from_name'],
+			'first_name'     => strtok( $v['from_name'], ' ' ),
+			'phone'          => $v['phone'],
+			'reply_to'       => $v['reply_to'],
+			'suburb'         => $v['suburb'],
+			'property_type'  => $v['property_type'],
+			'service'        => $v['service'],
+			'nbn_type'       => $v['nbn_type'],
+			'preferred_date' => $v['preferred_date'],
+			'preferred_time' => $v['preferred_time'],
+			'message'        => $v['message'],
+		);
+		$html = preg_replace_callback(
+			'/{{\s*(\w+)\s*}}/',
+			function ( $m ) use ( $values ) {
+				if ( ! isset( $values[ $m[1] ] ) ) {
+					return '';
+				}
+				$out = esc_html( $values[ $m[1] ] );
+				// Keep the customer's line breaks without relying on CSS support.
+				return 'message' === $m[1] ? str_replace( "\n", '<br>', $out ) : $out;
+			},
+			(string) file_get_contents( $file )
+		);
+		// The template's logo points at the GitHub Pages preview; serve it from this plugin instead.
+		return str_replace( 'https://hyderkhan.github.io/ncc-datacable/assets/', plugin_dir_url( __FILE__ ) . 'site/assets/', $html );
 	}
 
 	private static function owner_body( $v ) {
