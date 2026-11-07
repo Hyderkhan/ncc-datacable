@@ -102,7 +102,7 @@ Until it's configured, the form runs in **demo mode**: it shows the confirmation
      We'll call you on {{phone}} to talk through the job, give you a price and confirm a time, usually the same day. If it's urgent, call us on {{business_phone}}.
 
      {{business_name}}
-     Licensed data cabler and NBN technician, Sydney
+     Licensed data cabler and NBN technician, Sydney's Eastern Suburbs
      {{business_phone}}
      {{business_email}}
      ```
@@ -155,6 +155,7 @@ To use the real domain later:
 - Business details and the ACMA registration number: `config.js` (used by the booking form and the registration line) and the matching text in `index.html`.
 - Colours and type: the token block at the top of `styles.css`.
 - NBN diagram copy: the `NBN` object near the top of `main.js`.
+- After changing `styles.css`, `main.js` or `config.js`, bump the `?v=` number on their links at the top and bottom of `index.html` so visitors' browsers fetch the new files instead of a cached copy (GitHub Pages caches them for 10 minutes). The WordPress plugin versions them automatically.
 
 ## Design notes
 
