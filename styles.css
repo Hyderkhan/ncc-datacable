@@ -576,3 +576,4 @@ main { position: relative; }
   .mobile-bar .btn { min-width: 0; padding-inline: 12px; font-size: 16px; }
 }
 .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.demo-note.demo-first { margin: 0 0 22px; }

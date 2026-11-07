@@ -83,13 +83,15 @@ final class NCC_Site {
 		$base = plugin_dir_url( __FILE__ ) . 'site/';
 		$home = home_url( '/' );
 
-		// assets/…, styles.css, main.js, config.js → plugin URL (css/js get a cache-busting version).
+		// assets/…, styles.css, main.js, config.js → plugin URL. css/js get the file's
+		// modified time as their version, replacing any ?v= the static copy carries.
 		$html = preg_replace_callback(
 			'/\b(src|href)="(?!https?:|\/\/|\/|#|mailto:|tel:|data:)([^"]+)"/i',
 			function ( $m ) use ( $dir, $base ) {
-				$url = $base . $m[2];
-				if ( preg_match( '/\.(css|js)$/i', $m[2] ) && is_readable( $dir . $m[2] ) ) {
-					$url = add_query_arg( 'ver', (string) filemtime( $dir . $m[2] ), $url );
+				$path = strtok( $m[2], '?' );
+				$url  = $base . $m[2];
+				if ( preg_match( '/\.(css|js)$/i', $path ) && is_readable( $dir . $path ) ) {
+					$url = add_query_arg( 'ver', (string) filemtime( $dir . $path ), $base . $path );
 				}
 				return $m[1] . '="' . esc_url( $url ) . '"';
 			},
@@ -113,7 +115,8 @@ final class NCC_Site {
 			. wp_json_encode( esc_url_raw( rest_url( 'ncc/v1/quote' ) ), JSON_UNESCAPED_SLASHES )
 			. ';</script>';
 		$html = preg_replace_callback(
-			'#<script src="[^"]*config\.js[^"]*"></script>#',
+			'#<script src="[^"]*config\.js[^"]*"></script>#', // matches with or without a ?ver= query
+
 			function ( $m ) use ( $inline ) {
 				return $m[0] . "\n" . $inline;
 			},

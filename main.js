@@ -340,7 +340,7 @@ What happens next
 We'll call you on {{phone}} to talk through the job, give you a price and confirm a time, usually the same day. If it's urgent, call us on {{business_phone}}.
 
 {{business_name}}
-Licensed data cabler and NBN technician, Sydney
+Licensed data cabler and NBN technician, Sydney's Eastern Suburbs
 {{business_phone}}
 {{business_email}}`;
 
@@ -464,8 +464,14 @@ Licensed data cabler and NBN technician, Sydney
     function renderSuccess(p, mode, customerSent) {
       const phone = esc(BIZ.phone || "");
       const phoneHref = esc(BIZ.phoneHref || "#");
+      const demo = mode === "demo";
+      const first = esc(p.from_name.split(" ")[0]);
+      const next = demo
+        ? `Thanks ${first}. This preview doesn't send anything. On the live site we'd call you on ${esc(p.phone)} with a price, and email a copy of this request to ${esc(p.reply_to)}.`
+        : `Thanks ${first}. We'll call you on ${esc(p.phone)} with a price and to confirm a time, usually the same day.${customerSent ? ` A copy of this request has been emailed to ${esc(p.reply_to)}.` : ""}`;
       let html = `
         <div class="success">
+          ${demo ? `<div class="demo-note demo-first"><strong>Preview mode: nothing was sent.</strong> On the live WordPress site, the two emails shown below go out automatically: one to ${esc(p.to_email || "the business")}, one to the customer.</div>` : ""}
           <h3>Quote request received</h3>
           <span class="ref">Reference ${esc(p.booking_ref)}</span>
           <dl class="summary">
@@ -473,14 +479,13 @@ Licensed data cabler and NBN technician, Sydney
             <div><dt>Where</dt><dd>${esc(p.suburb)}, ${esc(p.property_type.toLowerCase())}</dd></div>
             <div><dt>When</dt><dd>${esc(p.preferred_date)}, ${esc(p.preferred_time.toLowerCase())}</dd></div>
           </dl>
-          <p class="next">Thanks ${esc(p.from_name.split(" ")[0])}. We'll call you on ${esc(p.phone)} with a price and to confirm a time, usually the same day.${customerSent ? ` A copy of this request has been emailed to ${esc(p.reply_to)}.` : ""}</p>
+          <p class="next">${next}</p>
           <div class="actions">
             <a class="btn btn-ghost" href="${phoneHref}">Call ${phone}</a>
             <button class="btn btn-ghost" type="button" data-action="reset">Send another request</button>
           </div>`;
-      if (mode === "demo") {
+      if (demo) {
         html += `
-          <div class="demo-note">Demo mode: nothing was sent. Once EmailJS is connected (see README), these two emails go out automatically.</div>
           ${emailPreview("To the business", p.to_email, fill(OWNER_SUBJECT, p), fill(OWNER_BODY, p))}
           ${emailPreview("To the customer", p.reply_to, fill(CUSTOMER_SUBJECT, p), fill(CUSTOMER_BODY, p))}`;
       } else if (!customerSent) {
