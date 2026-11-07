@@ -46,6 +46,19 @@ To update the site later, rebuild the zip and upload it again; WordPress offers 
 
 Skip this on WordPress; the plugin sends the emails.
 
+**Configured on 7 Nov 2026** for the GitHub Pages preview, so the form there sends real emails:
+
+| What | Value |
+|---|---|
+| Service (Gmail) | `service_d7xx66p` |
+| Business template, to `info@nextcc.com.au` | `template_3gbo8ij` ("NCC quote request: to business"), content from `emails/business-notification.html` |
+| Customer template, to `{{reply_to}}` | `template_6r7e6d2` ("NCC quote request: to customer"), content from `emails/customer-confirmation.html` |
+| Public key | in `config.js` |
+
+To change an email's design, edit the file in `emails/` and paste it into that template's **Edit Content, Code Editor** in EmailJS. The WordPress plugin reads the same files, so both routes send the same email. Restricting the key to the preview's domain (Account, Security) needs a paid EmailJS plan; the free plan's 200 emails a month caps any misuse until the site moves to WordPress.
+
+The steps below are how it was set up, for reference.
+
 GitHub Pages has no server, so the browser sends the emails through [EmailJS](https://www.emailjs.com) (free tier: 200 emails a month).
 Until it's configured, the form runs in **demo mode**: it shows the confirmation screen and previews both emails without sending anything.
 
