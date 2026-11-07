@@ -1,9 +1,9 @@
-/* Next Century Communication — site behaviour
+/* Next Century Communications — site behaviour
    1. Navigation (scroll state, mobile menu)
    2. Hero fibre canvas
    3. Signal rail: pulse follows scroll, lights junctions
    4. NBN technology tabs and diagram
-   5. Booking form: validation, EmailJS (owner + requester) or demo mode
+   5. Quote request form: validation, EmailJS (owner + requester) or demo mode
    6. Mobile call bar
 */
 (function () {
@@ -298,10 +298,10 @@
     select("fttp", false);
   }
 
-  /* ---------------- 5. Booking form ---------------- */
-  const OWNER_SUBJECT = "New booking request {{booking_ref}}: {{service}} in {{suburb}}";
+  /* ---------------- 5. Quote request form ---------------- */
+  const OWNER_SUBJECT = "New quote request {{booking_ref}}: {{service}} in {{suburb}}";
   const OWNER_BODY =
-`New booking request from the website
+`New quote request from the website
 
 Reference: {{booking_ref}}
 Received: {{submitted_at}}
@@ -321,13 +321,13 @@ Preferred: {{preferred_date}}, {{preferred_time}}
 Details
 {{message}}
 
-Reply to this email or call the customer to confirm a time.`;
+Call the customer back with a price and to confirm a time.`;
 
-  const CUSTOMER_SUBJECT = "We've received your booking request ({{booking_ref}})";
+  const CUSTOMER_SUBJECT = "We've received your quote request ({{booking_ref}})";
   const CUSTOMER_BODY =
 `Hi {{from_name}},
 
-Thanks for booking with {{business_name}}. We've received your request and will be in touch soon to confirm a time.
+Thanks for contacting {{business_name}}. We've received your quote request and will call you soon.
 
 Your reference: {{booking_ref}}
 
@@ -337,7 +337,7 @@ Location: {{suburb}}
 Preferred: {{preferred_date}}, {{preferred_time}}
 
 What happens next
-We'll call you on {{phone}} to confirm the time and talk through the job, usually the same day. If it's urgent, call us on {{business_phone}}.
+We'll call you on {{phone}} to talk through the job, give you a price and confirm a time, usually the same day. If it's urgent, call us on {{business_phone}}.
 
 {{business_name}}
 Licensed data cabler and NBN technician, Sydney
@@ -432,7 +432,7 @@ Licensed data cabler and NBN technician, Sydney
         preferred_time: f.preferred_time.value,
         message: f.message.value.trim() || "No extra details given.",
         to_email: BIZ.email || "",
-        business_name: BIZ.name || "Next Century Communication",
+        business_name: BIZ.name || "Next Century Communications",
         business_phone: BIZ.phone || "",
         business_email: BIZ.email || ""
       };
@@ -443,17 +443,17 @@ Licensed data cabler and NBN technician, Sydney
       const phoneHref = esc(BIZ.phoneHref || "#");
       let html = `
         <div class="success">
-          <h3>Booking request received</h3>
+          <h3>Quote request received</h3>
           <span class="ref">Reference ${esc(p.booking_ref)}</span>
           <dl class="summary">
             <div><dt>Service</dt><dd>${esc(p.service)}</dd></div>
             <div><dt>Where</dt><dd>${esc(p.suburb)}, ${esc(p.property_type.toLowerCase())}</dd></div>
             <div><dt>When</dt><dd>${esc(p.preferred_date)}, ${esc(p.preferred_time.toLowerCase())}</dd></div>
           </dl>
-          <p class="next">Thanks ${esc(p.from_name.split(" ")[0])}. We'll call you on ${esc(p.phone)} to confirm the time, usually the same day.${customerSent ? ` A copy of this request has been emailed to ${esc(p.reply_to)}.` : ""}</p>
+          <p class="next">Thanks ${esc(p.from_name.split(" ")[0])}. We'll call you on ${esc(p.phone)} with a price and to confirm a time, usually the same day.${customerSent ? ` A copy of this request has been emailed to ${esc(p.reply_to)}.` : ""}</p>
           <div class="actions">
             <a class="btn btn-ghost" href="${phoneHref}">Call ${phone}</a>
-            <button class="btn btn-ghost" type="button" data-action="reset">Make another booking</button>
+            <button class="btn btn-ghost" type="button" data-action="reset">Send another request</button>
           </div>`;
       if (mode === "demo") {
         html += `

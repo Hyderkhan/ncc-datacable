@@ -1,8 +1,8 @@
-/* Site configuration for Next Century Communication.
+/* Site configuration for Next Century Communications.
    Edit the values here; nothing else needs to change. */
 window.NCC_CONFIG = {
   business: {
-    name: "Next Century Communication",
+    name: "Next Century Communications",
     shortName: "NCC",
     phone: "0415 669 617",
     phoneHref: "tel:+61415669617",
