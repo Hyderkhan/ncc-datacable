@@ -444,6 +444,7 @@ Licensed data cabler and NBN technician, Sydney's Eastern Suburbs
         booking_ref: makeRef(),
         submitted_at: fmtNow(),
         from_name: f.from_name.value.trim(),
+        first_name: f.from_name.value.trim().split(/\s+/)[0],
         phone: f.phone.value.trim(),
         reply_to: f.reply_to.value.trim(),
         suburb: f.suburb.value.trim(),
